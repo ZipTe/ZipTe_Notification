@@ -1,19 +1,7 @@
-plugins {
-    id("java")
-}
-
-group = "com.zipte"
-version = "0.0.1-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
+    implementation(project(mapOf("path" to ":core")))
+    implementation("org.springframework.boot:spring-boot-starter-web")
 
-tasks.test {
-    useJUnitPlatform()
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.2.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 }
