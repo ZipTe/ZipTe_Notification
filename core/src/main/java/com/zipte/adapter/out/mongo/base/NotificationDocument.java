@@ -11,9 +11,6 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 import java.time.Instant;
 
 @Document("notifications")
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Getter
 public abstract class NotificationDocument {
 
@@ -27,17 +24,17 @@ public abstract class NotificationDocument {
     public Instant deleteAt;
 
     // 생성자
-    public static NotificationDocument of(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt) {
-
-        return NotificationDocument.builder()
-                .id(id)
-                .userId(userId)
-                .type(type)
-                .occurredAt(occurredAt)
-                .createdAt(createdAt)
-                .lastUpdatedAt(lastUpdatedAt)
-                .deleteAt(deleteAt).build();
+    public NotificationDocument(String id, Long userId, NotificationType type,Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt) {
+        this.id = id;
+        this.userId = userId;
+        this.type = type;
+        this.occurredAt = occurredAt;
+        this.createdAt = createdAt;
+        this.lastUpdatedAt = lastUpdatedAt;
+        this.deleteAt = deleteAt;
     }
+
+
 
 
 

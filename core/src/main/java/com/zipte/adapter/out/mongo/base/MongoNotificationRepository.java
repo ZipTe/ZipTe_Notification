@@ -6,11 +6,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface MongoNotificationRepository extends MongoRepository<NotificationDocument,String> {
+public interface MongoNotificationRepository<T extends NotificationDocument> extends MongoRepository<T, String> {
 
-    Optional<NotificationDocument> findById(String id);
+    Optional<T> findById(String id);
 
-    NotificationDocument save(NotificationDocument notificationDocument);
+    T save(T notificationDocument);
 
     void deleteById(String id);
 

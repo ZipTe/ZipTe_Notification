@@ -27,4 +27,16 @@ public class Notification {
         this.deleteAt = deleteAt;
     }
 
+    public void setOccurredAt(Instant occurredAt) {
+        this.occurredAt = occurredAt;
+    }
+
+    public void setLastUpdatedAt(Instant lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    public void setDeleteAt(Instant deleteAt) {
+        this.deleteAt = deleteAt;
+    }
+
 }
