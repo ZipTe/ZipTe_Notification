@@ -4,20 +4,18 @@ import com.zipte.adapter.out.mongo.base.NotificationDocument;
 import com.zipte.adapter.out.mongo.base.NotificationType;
 import com.zipte.domain.CommentNotification;
 import lombok.Getter;
-import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
 @Getter
-@Document("comment_notifications")
-@TypeAlias("CommentNotification")
+@Document(collection = "comment_notifications")
 public class CommentDocument extends NotificationDocument {
 
-    private Long postId;
-    private Long writerId;
-    private Long commentId;
-    private String comment;
+    private final Long postId;
+    private final Long writerId;
+    private final Long commentId;
+    private final String comment;
 
     public CommentDocument(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, Long postId, Long writerId, Long commentId, String comment) {
         super(id, userId, type, occurredAt, lastUpdatedAt, createdAt, deleteAt);

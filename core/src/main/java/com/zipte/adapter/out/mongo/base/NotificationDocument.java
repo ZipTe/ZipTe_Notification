@@ -1,16 +1,11 @@
 package com.zipte.adapter.out.mongo.base;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.time.Instant;
 
-@Document("notifications")
 @Getter
 public abstract class NotificationDocument {
 
