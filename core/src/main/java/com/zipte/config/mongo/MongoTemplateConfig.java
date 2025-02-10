@@ -1,4 +1,4 @@
-package com.zipte.infrastructure.out.persistence.repository.mongo.config;
+package com.zipte.config.mongo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

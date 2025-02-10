@@ -1,4 +1,4 @@
-package com.zipte.infrastructure.out.persistence.repository.mongo.config;
+package com.zipte.config.mongo;
 
 import com.mongodb.ConnectionString;
 import jakarta.annotation.PostConstruct;
