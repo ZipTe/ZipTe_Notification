@@ -5,19 +5,21 @@ import com.zipte.adapter.out.mongo.base.NotificationType;
 import com.zipte.domain.CommentNotification;
 import lombok.Getter;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
 @Getter
+@Document("comment_notifications")
 @TypeAlias("CommentNotification")
-public class CommentNotificationDocument extends NotificationDocument {
+public class CommentDocument extends NotificationDocument {
 
     private Long postId;
     private Long writerId;
     private Long commentId;
     private String comment;
 
-    public CommentNotificationDocument(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, Long postId, Long writerId, Long commentId, String comment) {
+    public CommentDocument(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, Long postId, Long writerId, Long commentId, String comment) {
         super(id, userId, type, occurredAt, lastUpdatedAt, createdAt, deleteAt);
         this.postId = postId;
         this.writerId = writerId;
@@ -25,8 +27,8 @@ public class CommentNotificationDocument extends NotificationDocument {
         this.comment = comment;
     }
 
-    public static CommentNotificationDocument from(CommentNotification commentNotification) {
-        return new CommentNotificationDocument(
+    public static CommentDocument from(CommentNotification commentNotification) {
+        return new CommentDocument(
                 commentNotification.getId(),
                 commentNotification.getUserId(),
                 commentNotification.getType(),
@@ -41,7 +43,7 @@ public class CommentNotificationDocument extends NotificationDocument {
         );
     }
 
-    public static CommentNotification toDomain(CommentNotificationDocument document){
+    public static CommentNotification toDomain(CommentDocument document){
         return new CommentNotification(
                 document.getId(),
                 document.getUserId(),

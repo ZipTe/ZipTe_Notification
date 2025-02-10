@@ -7,9 +7,16 @@ import java.util.Optional;
 
 public interface CommentNotificationPort {
 
-    CommentNotification saveCommentNotification(CommentNotification comment);
+    /*
+        도메인 객체를 외부의 연결체에서 저장해주는 Port의 역할을 수행한다.
+     */
 
-    void deleteCommentNotification(String commentId);
+    CommentNotification saveCommentNotification(CommentNotification commentNotification);
 
-    Optional<CommentNotification> loadCommentNotification(String commentId);
+    Optional<CommentNotification> loadCommentNotification(Long commentId);
+
+    void deleteCommentNotification(Long commentId);
+
+
+
 }
