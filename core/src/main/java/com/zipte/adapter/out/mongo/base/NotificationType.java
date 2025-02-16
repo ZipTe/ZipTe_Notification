@@ -1,4 +1,4 @@
-package com.zipte.domain;
+package com.zipte.adapter.out.mongo.base;
 
 public enum NotificationType {
     LIKE,

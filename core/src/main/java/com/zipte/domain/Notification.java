@@ -1,17 +1,13 @@
 package com.zipte.domain;
 
+import com.zipte.adapter.out.mongo.base.NotificationType;
 import lombok.Getter;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.time.Instant;
 
-@Document("notifications")
 @Getter
-public abstract class Notification {
+public class Notification {
 
-    @Field(targetType = FieldType.STRING)
     public String id;
     public Long userId;
     public NotificationType type;
@@ -20,7 +16,8 @@ public abstract class Notification {
     public Instant lastUpdatedAt;
     public Instant deleteAt;
 
-    public Notification(String id, Long userId, NotificationType type,Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt) {
+    // 생성자
+    public Notification(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt) {
         this.id = id;
         this.userId = userId;
         this.type = type;
