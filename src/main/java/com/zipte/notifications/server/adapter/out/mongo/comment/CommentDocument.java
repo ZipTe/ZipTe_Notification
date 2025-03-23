@@ -4,10 +4,10 @@ import com.zipte.notifications.server.adapter.out.mongo.base.NotificationDocumen
 import com.zipte.notifications.server.domain.CommentNotification;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.TypeAlias;
 
 @Getter
-@Document(collection = "comment_notifications")
+@TypeAlias("comment_notification")
 @SuperBuilder
 public class CommentDocument extends NotificationDocument {
 

@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.TypeAlias;
 
 @Getter
-@TypeAlias("PropertyNotification")
+@TypeAlias("Property_notification")
 @SuperBuilder
 public class PropertyDocument extends NotificationDocument {
 

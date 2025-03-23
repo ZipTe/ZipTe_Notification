@@ -20,7 +20,7 @@ public class PropertyEvent {
      */
 
     private PropertyEventType type;
-    private Long complexCode;
+    private String complexCode;
     private int price;
     private Instant occurredAt;
 
