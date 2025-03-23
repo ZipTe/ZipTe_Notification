@@ -1,7 +1,7 @@
 package com.zipte.notifications.server.adapter.in.consumer;
 
-import com.zipte.notifications.server.application.port.in.AddCommentEventUseCase;
-import com.zipte.notifications.server.application.port.in.RemoveCommentEventUseCase;
+import com.zipte.notifications.server.application.port.in.event.AddCommentEventUseCase;
+import com.zipte.notifications.server.application.port.in.event.RemoveCommentEventUseCase;
 import com.zipte.notifications.server.domain.CommentEvent;
 import com.zipte.notifications.server.domain.CommentEventType;
 import lombok.RequiredArgsConstructor;

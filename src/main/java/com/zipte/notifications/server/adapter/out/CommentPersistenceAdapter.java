@@ -1,8 +1,10 @@
 package com.zipte.notifications.server.adapter.out;
 
 import com.zipte.notifications.server.adapter.out.mongo.comment.CommentDocument;
-import com.zipte.notifications.server.adapter.out.mongo.comment.CommentRepository;
-import com.zipte.notifications.server.application.port.out.CommentNotificationPort;
+import com.zipte.notifications.server.adapter.out.mongo.comment.CommentDocumentRepository;
+import com.zipte.notifications.server.application.port.out.DeleteCommentPort;
+import com.zipte.notifications.server.application.port.out.LoadCommentPort;
+import com.zipte.notifications.server.application.port.out.SaveCommentPort;
 import com.zipte.notifications.server.domain.CommentNotification;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +15,13 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class CommentPersistenceAdapter implements CommentNotificationPort {
+public class CommentPersistenceAdapter implements SaveCommentPort, LoadCommentPort, DeleteCommentPort {
 
-    private final CommentRepository commentMongoRepository;
+
+    private final CommentDocumentRepository commentMongoRepository;
 
     @Override
-    public CommentNotification saveCommentNotification(CommentNotification comment) {
+    public CommentNotification saveNotification(CommentNotification comment) {
         var commentDocument = CommentDocument.from(comment);
 
         return commentMongoRepository.save(commentDocument)
@@ -26,7 +29,7 @@ public class CommentPersistenceAdapter implements CommentNotificationPort {
     }
 
     @Override
-    public Optional<CommentNotification> loadCommentNotification(Long commentId) {
+    public Optional<CommentNotification> loadNotification(Long commentId) {
         return commentMongoRepository.findByCommentId(commentId)
                 .map(CommentDocument::toDomain);
     }
