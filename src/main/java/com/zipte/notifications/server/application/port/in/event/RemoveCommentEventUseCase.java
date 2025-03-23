@@ -1,4 +1,4 @@
-package com.zipte.notifications.server.application.port.in;
+package com.zipte.notifications.server.application.port.in.event;
 
 
 import com.zipte.notifications.server.domain.CommentEvent;
