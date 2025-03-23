@@ -11,11 +11,11 @@ import java.time.Instant;
 public class PropertyNotification extends Notification {
 
     private String id;
-    private final Long complexCode;
+    private final String complexCode;
     private final int price;
 
     // 생성자
-    public static PropertyNotification of(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, Long complexCode, int price){
+    public static PropertyNotification of(String id, Long userId, NotificationType type, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, String complexCode, int price){
         return PropertyNotification.builder()
                 .id(id)
                 .type(type)

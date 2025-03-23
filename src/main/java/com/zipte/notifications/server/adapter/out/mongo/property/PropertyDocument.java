@@ -9,14 +9,14 @@ import org.springframework.data.annotation.TypeAlias;
 @Getter
 @TypeAlias("PropertyNotification")
 @SuperBuilder
-public class PropertyNotificationDocument extends NotificationDocument {
+public class PropertyDocument extends NotificationDocument {
 
-    private Long complexCode;
+    private String complexCode;
     private int price;
 
     // From
-    public static PropertyNotificationDocument from(PropertyNotification notification) {
-        return PropertyNotificationDocument.builder()
+    public static PropertyDocument from(PropertyNotification notification) {
+        return PropertyDocument.builder()
                 .id(notification.getId())
                 .userId(notification.getUserId())
                 .type(notification.getType())
