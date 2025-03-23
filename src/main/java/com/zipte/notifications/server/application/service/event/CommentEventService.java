@@ -10,8 +10,8 @@ import com.zipte.notifications.server.application.port.out.SaveCommentPort;
 import com.zipte.notifications.server.domain.CommentEvent;
 import com.zipte.notifications.server.domain.CommentNotification;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -22,8 +22,8 @@ import java.util.Objects;
         -> mongoDB 저장
      */
 
-@Slf4j
-@Component
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class CommentEventService implements AddCommentEventUseCase, RemoveCommentEventUseCase {
 
@@ -35,14 +35,26 @@ public class CommentEventService implements AddCommentEventUseCase, RemoveCommen
 
         Instant now = Instant.now();
 
-
         // 글 작성자와 같다면 알림은 스킵
         if (Objects.equals(event.getPostOwnerId(), event.getWriterId())) {
             return; // 글 작성자와 댓글 작성자가 같으면 알림 X
         }
 
+        CommentNotification notification = createNotification(event, now);
+
+        // DB에 저장
+        savePort.saveNotification(notification);
+
+    }
+
+    @Override
+    public void processRemoveEvent(CommentEvent commentEvent) {
+        deletePort.deleteCommentNotification(commentEvent.getCommentId());
+    }
+
+    private CommentNotification createNotification(CommentEvent event, Instant now) {
         // 알림 생성
-        CommentNotification notification = CommentNotification.of
+        return CommentNotification.of
                 (NotificationIdGenerator.generate(),
                         event.getPostOwnerId(),
                         NotificationType.COMMENT,
@@ -54,14 +66,7 @@ public class CommentEventService implements AddCommentEventUseCase, RemoveCommen
                         event.getWriterId(),
                         event.getCommentId(),
                         event.getComment());
-
-        // DB에 저장
-        savePort.saveNotification(notification);
-
     }
 
-    @Override
-    public void processRemoveEvent(CommentEvent commentEvent) {
 
-    }
 }
