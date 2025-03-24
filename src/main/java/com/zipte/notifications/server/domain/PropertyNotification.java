@@ -12,10 +12,10 @@ public class PropertyNotification extends Notification {
 
     private String id;
     private final String complexCode;
-    private final int price;
+    private final long price;
 
     // 생성자
-    public static PropertyNotification of(String id, NotificationType type,Long userId, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, String complexCode, int price){
+    public static PropertyNotification of(String id, NotificationType type,Long userId, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, String complexCode, long price){
         return PropertyNotification.builder()
                 .id(id)
                 .type(type)

@@ -21,7 +21,7 @@ public class PropertyEvent {
 
     private PropertyEventType type;
     private String complexCode;
-    private int price;
+    private long price;
     private Instant occurredAt;
 
     //echo '{"type":"ADD","postId":1,"postOwnerId":1,"writerId":1,"commentId":1,"comment":"hello","occurredAt":"2025-02-10T23:50:00Z"}'| kafka-console-producer --broker-list localhost:9092 --topic comment
