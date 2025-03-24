@@ -12,7 +12,7 @@ import org.springframework.data.annotation.TypeAlias;
 public class PropertyDocument extends NotificationDocument {
 
     private String complexCode;
-    private int price;
+    private long price;
 
     // From
     public static PropertyDocument from(PropertyNotification notification) {
