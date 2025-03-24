@@ -1,12 +1,11 @@
-package com.zipte.notifications.server.application.service;
+package com.zipte.notifications.server.application.service.task;
 
 import com.zipte.notifications.core.utils.NotificationIdGenerator;
 import com.zipte.notifications.server.adapter.out.mongo.base.NotificationType;
 import com.zipte.notifications.server.application.port.in.task.AddCommentNotificationTask;
 import com.zipte.notifications.server.application.port.in.task.RemoveCommentNotificationTask;
-import com.zipte.notifications.server.application.port.out.DeleteCommentPort;
-import com.zipte.notifications.server.application.port.out.LoadCommentPort;
-import com.zipte.notifications.server.application.port.out.SaveCommentPort;
+import com.zipte.notifications.server.application.port.out.task.DeleteCommentPort;
+import com.zipte.notifications.server.application.port.out.task.SaveCommentPort;
 import com.zipte.notifications.server.adapter.in.consumer.dto.CommentEvent;
 import com.zipte.notifications.server.domain.CommentNotification;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,6 @@ import java.util.Objects;
 public class CommentNotificationService implements AddCommentNotificationTask, RemoveCommentNotificationTask {
 
     private final SaveCommentPort savePort;
-    private final LoadCommentPort loadPort;
     private final DeleteCommentPort deletePort;
 
     public void processAddEvent(CommentEvent event) {
