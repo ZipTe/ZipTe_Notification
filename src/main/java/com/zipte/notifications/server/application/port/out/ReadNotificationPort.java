@@ -5,7 +5,7 @@ import java.time.Instant;
 public interface ReadNotificationPort {
 
     // 현재시간으로 읽음처리
-    Instant setLatestReadAt(Long userId);
+    void setLatestReadAt(Long userId);
 
     // 캐시에서 나의 읽음시간 가져오기
     Instant getLatestReadAt(Long userId);
