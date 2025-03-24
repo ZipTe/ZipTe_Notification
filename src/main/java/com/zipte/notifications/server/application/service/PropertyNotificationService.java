@@ -1,13 +1,13 @@
-package com.zipte.notifications.server.application.service.event;
+package com.zipte.notifications.server.application.service;
 
 import com.zipte.notifications.core.utils.NotificationIdGenerator;
 import com.zipte.notifications.server.adapter.out.mongo.base.NotificationType;
-import com.zipte.notifications.server.application.port.in.event.AddPropertyEventUseCase;
-import com.zipte.notifications.server.application.port.in.event.RemovePropertyEventUseCase;
+import com.zipte.notifications.server.application.port.in.task.AddPropertyNotificationTask;
+import com.zipte.notifications.server.application.port.in.task.RemovePropertyNotificationTask;
 import com.zipte.notifications.server.application.port.out.DeletePropertyPort;
 import com.zipte.notifications.server.application.port.out.LoadPropertyPort;
 import com.zipte.notifications.server.application.port.out.SavePropertyPort;
-import com.zipte.notifications.server.domain.PropertyEvent;
+import com.zipte.notifications.server.adapter.in.consumer.dto.PropertyEvent;
 import com.zipte.notifications.server.domain.PropertyNotification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.time.temporal.ChronoUnit;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PropertyEventService implements AddPropertyEventUseCase, RemovePropertyEventUseCase {
+public class PropertyNotificationService implements AddPropertyNotificationTask, RemovePropertyNotificationTask {
 
     private final SavePropertyPort savePort;
     private final LoadPropertyPort loadPort;

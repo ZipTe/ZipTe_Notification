@@ -1,13 +1,13 @@
-package com.zipte.notifications.server.application.service.event;
+package com.zipte.notifications.server.application.service;
 
 import com.zipte.notifications.core.utils.NotificationIdGenerator;
 import com.zipte.notifications.server.adapter.out.mongo.base.NotificationType;
-import com.zipte.notifications.server.application.port.in.event.AddCommentEventUseCase;
-import com.zipte.notifications.server.application.port.in.event.RemoveCommentEventUseCase;
+import com.zipte.notifications.server.application.port.in.task.AddCommentNotificationTask;
+import com.zipte.notifications.server.application.port.in.task.RemoveCommentNotificationTask;
 import com.zipte.notifications.server.application.port.out.DeleteCommentPort;
 import com.zipte.notifications.server.application.port.out.LoadCommentPort;
 import com.zipte.notifications.server.application.port.out.SaveCommentPort;
-import com.zipte.notifications.server.domain.CommentEvent;
+import com.zipte.notifications.server.adapter.in.consumer.dto.CommentEvent;
 import com.zipte.notifications.server.domain.CommentNotification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ import java.util.Objects;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CommentEventService implements AddCommentEventUseCase, RemoveCommentEventUseCase {
+public class CommentNotificationService implements AddCommentNotificationTask, RemoveCommentNotificationTask {
 
     private final SaveCommentPort savePort;
     private final LoadCommentPort loadPort;

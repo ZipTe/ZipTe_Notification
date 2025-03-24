@@ -1,11 +1,9 @@
 package com.zipte.notifications.server.adapter.in.consumer;
 
-import com.zipte.notifications.server.application.port.in.event.AddPropertyEventUseCase;
-import com.zipte.notifications.server.application.port.in.event.RemovePropertyEventUseCase;
-import com.zipte.notifications.server.domain.CommentEvent;
-import com.zipte.notifications.server.domain.CommentEventType;
-import com.zipte.notifications.server.domain.PropertyEvent;
-import com.zipte.notifications.server.domain.PropertyEventType;
+import com.zipte.notifications.server.application.port.in.task.AddPropertyNotificationTask;
+import com.zipte.notifications.server.application.port.in.task.RemovePropertyNotificationTask;
+import com.zipte.notifications.server.adapter.in.consumer.dto.PropertyEvent;
+import com.zipte.notifications.server.adapter.in.consumer.dto.PropertyEventType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -18,11 +16,11 @@ import java.util.function.Consumer;
 @RequiredArgsConstructor
 public class PropertyEventConsumer {
 
-    private final AddPropertyEventUseCase addTask;
-    private final RemovePropertyEventUseCase removeTask;
+    private final AddPropertyNotificationTask addTask;
+    private final RemovePropertyNotificationTask removeTask;
 
     @Bean("property")
-    public Consumer<PropertyEvent> comment() {
+    public Consumer<PropertyEvent> property() {
         return event -> {
             if (event.getType() == PropertyEventType.ADD) {
                 // 몽고디비에 저장하는 로직 수행

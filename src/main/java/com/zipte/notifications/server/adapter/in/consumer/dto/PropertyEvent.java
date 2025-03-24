@@ -1,4 +1,4 @@
-package com.zipte.notifications.server.domain;
+package com.zipte.notifications.server.adapter.in.consumer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
