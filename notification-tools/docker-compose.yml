@@ -15,7 +15,7 @@ services:
     image: redis:7.2.5
     container_name: zipte-redis
     ports:
-      - '6379:6379'
+      - '6479:6379'
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.10
