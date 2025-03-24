@@ -23,7 +23,7 @@ public class PropertyDocument extends NotificationDocument {
                 .occurredAt(notification.getOccurredAt())
                 .createdAt(notification.getCreatedAt())
                 .lastUpdatedAt(notification.getLastUpdatedAt())
-                .deleteAt(notification.getDeleteAt())
+                .deletedAt(notification.getDeleteAt())
                 .complexCode(notification.getComplexCode())
                 .price(notification.getPrice())
                 .build();
@@ -38,7 +38,7 @@ public class PropertyDocument extends NotificationDocument {
                 .occurredAt(this.occurredAt)
                 .createdAt(this.createdAt)
                 .lastUpdatedAt(this.lastUpdatedAt)
-                .deleteAt(this.deleteAt)
+                .deleteAt(this.deletedAt)
                 .complexCode(this.complexCode)
                 .price(this.price)
                 .build();

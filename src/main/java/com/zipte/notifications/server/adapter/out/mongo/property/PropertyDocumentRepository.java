@@ -1,10 +1,10 @@
 package com.zipte.notifications.server.adapter.out.mongo.property;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.zipte.notifications.server.adapter.out.mongo.base.NotificationRepository;
 
 import java.util.Optional;
 
-public interface PropertyDocumentRepository extends MongoRepository<PropertyDocument,String> {
+public interface PropertyDocumentRepository extends NotificationRepository<PropertyDocument, String> {
 
     Optional<PropertyDocument> findByComplexCode(String complexCode);
 

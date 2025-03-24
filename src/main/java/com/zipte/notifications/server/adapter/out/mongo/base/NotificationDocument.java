@@ -20,5 +20,5 @@ public abstract class NotificationDocument {
     public Instant occurredAt;
     public Instant createdAt;
     public Instant lastUpdatedAt;
-    public Instant deleteAt;
+    public Instant deletedAt;
 }
