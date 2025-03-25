@@ -1,20 +1,27 @@
 package com.zipte.notifications.server.adapter.out.mongo.favorite;
 
 import com.zipte.notifications.server.adapter.out.mongo.base.NotificationDocument;
-import com.zipte.notifications.server.domain.Notification;
 import com.zipte.notifications.server.domain.UserFavoriteNotification;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@TypeAlias("user_favorite")
+@Document("user_favorite")
 public class UserFavoriteDocument extends NotificationDocument {
 
     private String complexCode;
     private String regionCode;
 
     // from
-    public static UserFavoriteDocument of (UserFavoriteNotification notification) {
+    public static UserFavoriteDocument from(UserFavoriteNotification notification) {
         return UserFavoriteDocument.builder()
                 .id(notification.getId())
                 .userId(notification.getUserId())
@@ -29,7 +36,7 @@ public class UserFavoriteDocument extends NotificationDocument {
     }
 
     @Override
-    public Notification toDomain() {
+    public UserFavoriteNotification toDomain() {
         return UserFavoriteNotification.builder()
                 .id(getId())
                 .userId(getUserId())

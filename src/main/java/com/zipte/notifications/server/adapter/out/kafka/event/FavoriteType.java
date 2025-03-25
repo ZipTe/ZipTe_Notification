@@ -1,13 +1,8 @@
 package com.zipte.notifications.server.adapter.out.kafka.event;
 
+import lombok.Getter;
+
+@Getter
 public enum FavoriteType {
-
-    /*
-        삭제할 때 필요한 것이다.
-     */
-
-
-
-
-
+    APARTMENT, REGION
 }

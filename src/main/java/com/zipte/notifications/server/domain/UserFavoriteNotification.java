@@ -20,12 +20,13 @@ public class UserFavoriteNotification extends Notification {
                 .id(id)
                 .type(type)
                 .userId(userId)
-                .complexCode(complexCode)
                 .regionCode(regionCode)
                 .occurredAt(occurredAt)
                 .createdAt(createdAt)
                 .lastUpdatedAt(lastUpdatedAt)
                 .deleteAt(deleteAt)
+                .complexCode(complexCode)
+                .regionCode(regionCode)
                 .build();
     }
 }
