@@ -1,10 +1,10 @@
 package com.zipte.notifications.server.adapter.out.mongo.comment;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.zipte.notifications.server.adapter.out.mongo.base.NotificationRepository;
 
 import java.util.Optional;
 
-public interface CommentDocumentRepository extends MongoRepository<CommentDocument,String> {
+public interface CommentDocumentRepository extends NotificationRepository<CommentDocument, String> {
 
 
     Optional<CommentDocument> findByCommentId(Long commentId);

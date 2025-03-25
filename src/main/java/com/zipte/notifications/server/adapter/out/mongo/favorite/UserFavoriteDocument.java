@@ -1,28 +1,28 @@
-package com.zipte.notifications.server.adapter.out.mongo.comment;
+package com.zipte.notifications.server.adapter.out.mongo.favorite;
 
 import com.zipte.notifications.server.adapter.out.mongo.base.NotificationDocument;
-import com.zipte.notifications.server.domain.CommentNotification;
+import com.zipte.notifications.server.domain.UserFavoriteNotification;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
-@TypeAlias("comment_notification")
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-public class CommentDocument extends NotificationDocument {
+@TypeAlias("user_favorite")
+@Document("user_favorite")
+public class UserFavoriteDocument extends NotificationDocument {
 
-    private Long postId;
-    private Long writerId;
-    private Long commentId;
-    private String comment;
+    private String complexCode;
+    private String regionCode;
 
     // from
-    public static CommentDocument from(CommentNotification notification) {
-        return CommentDocument.builder()
+    public static UserFavoriteDocument from(UserFavoriteNotification notification) {
+        return UserFavoriteDocument.builder()
                 .id(notification.getId())
                 .userId(notification.getUserId())
                 .type(notification.getType())
@@ -30,16 +30,14 @@ public class CommentDocument extends NotificationDocument {
                 .createdAt(notification.getCreatedAt())
                 .lastUpdatedAt(notification.getLastUpdatedAt())
                 .deletedAt(notification.getDeleteAt())
-                .postId(notification.getPostId())
-                .writerId(notification.getWriterId())
-                .commentId(notification.getCommentId())
-                .comment(notification.getComment())
+                .complexCode(notification.getComplexCode())
+                .regionCode(notification.getRegionCode())
                 .build();
     }
 
-    // toDomain
-    public CommentNotification toDomain() {
-        return CommentNotification.builder()
+    @Override
+    public UserFavoriteNotification toDomain() {
+        return UserFavoriteNotification.builder()
                 .id(getId())
                 .userId(getUserId())
                 .type(getType())
@@ -47,10 +45,8 @@ public class CommentDocument extends NotificationDocument {
                 .createdAt(getCreatedAt())
                 .lastUpdatedAt(getLastUpdatedAt())
                 .deleteAt(getDeletedAt())
-                .postId(this.postId)
-                .writerId(this.writerId)
-                .commentId(this.commentId)
-                .comment(this.comment)
+                .complexCode(getComplexCode())
+                .regionCode(getRegionCode())
                 .build();
     }
 }

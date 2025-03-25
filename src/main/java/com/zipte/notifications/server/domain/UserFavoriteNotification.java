@@ -8,24 +8,25 @@ import java.time.Instant;
 
 @Getter
 @SuperBuilder
-public class PropertyNotification extends Notification {
+public class UserFavoriteNotification extends Notification {
 
     private String complexCode;
-    private long price;
+    private String regionCode;
 
     // 생성자
-    public static PropertyNotification of(String id, NotificationType type,Long userId, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, String complexCode, long price){
-        return PropertyNotification.builder()
+    public static UserFavoriteNotification of(String id, NotificationType type, Long userId, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, String complexCode, String regionCode) {
+
+        return UserFavoriteNotification.builder()
                 .id(id)
                 .type(type)
                 .userId(userId)
-                .complexCode(complexCode)
-                .price(price)
+                .regionCode(regionCode)
                 .occurredAt(occurredAt)
                 .createdAt(createdAt)
                 .lastUpdatedAt(lastUpdatedAt)
                 .deleteAt(deleteAt)
+                .complexCode(complexCode)
+                .regionCode(regionCode)
                 .build();
     }
-
 }
