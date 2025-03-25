@@ -16,7 +16,6 @@ public interface NotificationRepository <T extends NotificationDocument, ID>  ex
     Page<NotificationDocument> findAllByUserIdOrderByOccurredAtDesc(Long userId, Pageable pageable);
 
     // 제일 최신 알림, 읽음 시간 가져오기
-    @Query("{'userId': ?0 }")
     Optional<NotificationDocument> findFirstByUserIdOrderByOccurredAtDesc(Long userId);
 
 
