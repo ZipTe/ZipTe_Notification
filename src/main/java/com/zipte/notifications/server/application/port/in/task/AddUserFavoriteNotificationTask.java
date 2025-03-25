@@ -1,6 +1,6 @@
 package com.zipte.notifications.server.application.port.in.task;
 
-import com.zipte.notifications.server.adapter.in.consumer.dto.UserFavoriteEvent;
+import com.zipte.notifications.server.adapter.out.kafka.event.UserFavoriteEvent;
 
 public interface AddUserFavoriteNotificationTask {
 

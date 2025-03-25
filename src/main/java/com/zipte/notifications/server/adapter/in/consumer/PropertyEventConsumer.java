@@ -2,8 +2,8 @@ package com.zipte.notifications.server.adapter.in.consumer;
 
 import com.zipte.notifications.server.application.port.in.task.AddPropertyNotificationTask;
 import com.zipte.notifications.server.application.port.in.task.RemovePropertyNotificationTask;
-import com.zipte.notifications.server.adapter.in.consumer.dto.PropertyEvent;
-import com.zipte.notifications.server.adapter.in.consumer.dto.EventType;
+import com.zipte.notifications.server.adapter.out.kafka.event.PropertyEvent;
+import com.zipte.notifications.server.adapter.out.kafka.event.EventType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

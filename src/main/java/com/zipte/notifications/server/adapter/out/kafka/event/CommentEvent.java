@@ -1,4 +1,4 @@
-package com.zipte.notifications.server.adapter.in.consumer.dto;
+package com.zipte.notifications.server.adapter.out.kafka.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -4,7 +4,6 @@ import com.zipte.notifications.server.application.port.in.UserNotificationUseCas
 import com.zipte.notifications.server.application.port.out.LoadNotificationPort;
 import com.zipte.notifications.server.application.port.out.TimeNotificationPort;
 import com.zipte.notifications.server.domain.Notification;
-import com.zipte.notifications.server.domain.PropertyNotification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -52,11 +50,6 @@ public class NotificationService implements UserNotificationUseCase {
 
         // 전체 알림을 가져온다.
         return loadNotificationPort.loadNotifications(userId, pageable);
-    }
-
-    @Override
-    public Optional<PropertyNotification> findByNotificationId(String complexCode) {
-        return loadNotificationPort.loadPropertyNotification(complexCode);
     }
 
 }

@@ -6,7 +6,7 @@ import com.zipte.notifications.server.application.port.in.task.AddPropertyNotifi
 import com.zipte.notifications.server.application.port.in.task.RemovePropertyNotificationTask;
 import com.zipte.notifications.server.application.port.out.task.DeletePropertyPort;
 import com.zipte.notifications.server.application.port.out.task.SavePropertyPort;
-import com.zipte.notifications.server.adapter.in.consumer.dto.PropertyEvent;
+import com.zipte.notifications.server.adapter.out.kafka.event.PropertyEvent;
 import com.zipte.notifications.server.domain.PropertyNotification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

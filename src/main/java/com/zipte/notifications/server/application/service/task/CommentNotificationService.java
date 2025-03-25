@@ -6,7 +6,7 @@ import com.zipte.notifications.server.application.port.in.task.AddCommentNotific
 import com.zipte.notifications.server.application.port.in.task.RemoveCommentNotificationTask;
 import com.zipte.notifications.server.application.port.out.task.DeleteCommentPort;
 import com.zipte.notifications.server.application.port.out.task.SaveCommentPort;
-import com.zipte.notifications.server.adapter.in.consumer.dto.CommentEvent;
+import com.zipte.notifications.server.adapter.out.kafka.event.CommentEvent;
 import com.zipte.notifications.server.domain.CommentNotification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

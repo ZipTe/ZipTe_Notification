@@ -1,7 +1,7 @@
 package com.zipte.notifications.server.application.port.in.task;
 
 
-import com.zipte.notifications.server.adapter.in.consumer.dto.CommentEvent;
+import com.zipte.notifications.server.adapter.out.kafka.event.CommentEvent;
 
 public interface AddCommentNotificationTask {
 
