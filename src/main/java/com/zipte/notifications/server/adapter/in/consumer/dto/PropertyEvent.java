@@ -19,7 +19,7 @@ public class PropertyEvent {
         누가 올렸는지는 중요하지 않고, 가격이 변동만이 중요할 것 처럼 생각된다.
      */
 
-    private PropertyEventType type;
+    private EventType type;
     private String complexCode;
     private long price;
     private Instant occurredAt;
