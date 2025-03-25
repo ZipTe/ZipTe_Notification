@@ -13,6 +13,9 @@ public interface LoadNotificationPort {
     // 최신 알림 목록 조회
     Page<Notification> loadNotifications(Long userId, Pageable pageable);
 
+    // 최신 알람의 시간
+    Optional<Notification> loadNotificationsAt(Long userId);
+
     // 댓글 알림 상세 조회
     Optional<CommentNotification> loadCommentNotification(Long commentId);
 

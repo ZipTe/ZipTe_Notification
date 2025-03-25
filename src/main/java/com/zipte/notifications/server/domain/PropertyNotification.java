@@ -10,9 +10,8 @@ import java.time.Instant;
 @SuperBuilder
 public class PropertyNotification extends Notification {
 
-    private String id;
-    private final String complexCode;
-    private final long price;
+    private String complexCode;
+    private long price;
 
     // 생성자
     public static PropertyNotification of(String id, NotificationType type,Long userId, Instant occurredAt, Instant createdAt, Instant lastUpdatedAt, Instant deleteAt, String complexCode, long price){

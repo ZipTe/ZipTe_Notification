@@ -2,19 +2,23 @@ package com.zipte.notifications.server.adapter.out.mongo.comment;
 
 import com.zipte.notifications.server.adapter.out.mongo.base.NotificationDocument;
 import com.zipte.notifications.server.domain.CommentNotification;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.TypeAlias;
 
 @Getter
 @TypeAlias("comment_notification")
+@NoArgsConstructor
+@AllArgsConstructor
 @SuperBuilder
 public class CommentDocument extends NotificationDocument {
 
-    private final Long postId;
-    private final Long writerId;
-    private final Long commentId;
-    private final String comment;
+    private Long postId;
+    private Long writerId;
+    private Long commentId;
+    private String comment;
 
     // from
     public static CommentDocument from(CommentNotification notification) {
@@ -36,13 +40,13 @@ public class CommentDocument extends NotificationDocument {
     // toDomain
     public CommentNotification toDomain() {
         return CommentNotification.builder()
-                .id(this.id)
-                .userId(this.userId)
-                .type(this.type)
-                .occurredAt(this.occurredAt)
-                .createdAt(this.createdAt)
-                .lastUpdatedAt(this.lastUpdatedAt)
-                .deleteAt(this.deletedAt)
+                .id(getId())
+                .userId(getUserId())
+                .type(getType())
+                .occurredAt(getOccurredAt())
+                .createdAt(getCreatedAt())
+                .lastUpdatedAt(getLastUpdatedAt())
+                .deleteAt(getDeletedAt())
                 .postId(this.postId)
                 .writerId(this.writerId)
                 .commentId(this.commentId)

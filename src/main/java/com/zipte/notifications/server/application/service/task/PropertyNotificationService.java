@@ -35,7 +35,6 @@ public class PropertyNotificationService implements AddPropertyNotificationTask,
         PropertyNotification notification = createNotification(event, now);
 
         // DB에 저장
-        log.info("Processing event {}", notification);
         savePort.saveNotification(notification);
 
     }
@@ -47,10 +46,10 @@ public class PropertyNotificationService implements AddPropertyNotificationTask,
 
     private PropertyNotification createNotification(PropertyEvent event, Instant now) {
         // 알림 생성
-        return PropertyNotification.of
-                (NotificationIdGenerator.generate(),
+        return PropertyNotification.of(
+                        NotificationIdGenerator.generate(),
                         NotificationType.PROPERTY,
-                        null,
+                        1L,
                         event.getOccurredAt(),
                         now,
                         now,

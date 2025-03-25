@@ -1,23 +1,23 @@
 package com.zipte.notifications.server.adapter.out.mongo.base;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.Instant;
 import java.util.Optional;
 
 @Repository
 public interface NotificationRepository <T extends NotificationDocument, ID>  extends MongoRepository<T, ID> {
 
-    // 목록조회하기 (처음부터)
-    Slice<NotificationDocument> findAllByUserIdOrderByOccurredAtDesc(long userId, Pageable pageable);
+    // 알림 목록 조회하기 (처음부터)
+    @Query("{'userId': ?0 }")
+    Page<NotificationDocument> findAllByUserIdOrderByOccurredAtDesc(Long userId, Pageable pageable);
 
-    // occurredAt이 있으면, 해당 pivot부터 조회
-    Slice<NotificationDocument> findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(long userId, Instant pivot, Pageable pageable);
-
-    // 최신 읽음 시간 1개 가져오기
+    // 제일 최신 알림, 읽음 시간 가져오기
+    @Query("{'userId': ?0 }")
     Optional<NotificationDocument> findFirstByUserIdOrderByOccurredAtDesc(Long userId);
+
 
 }
