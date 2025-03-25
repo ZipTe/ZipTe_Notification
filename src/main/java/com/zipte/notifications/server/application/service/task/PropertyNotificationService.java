@@ -5,6 +5,7 @@ import com.zipte.notifications.server.adapter.out.mongo.base.NotificationType;
 import com.zipte.notifications.server.application.port.in.task.AddPropertyNotificationTask;
 import com.zipte.notifications.server.application.port.in.task.RemovePropertyNotificationTask;
 import com.zipte.notifications.server.application.port.out.task.DeletePropertyPort;
+import com.zipte.notifications.server.application.port.out.task.LoadUserFavoritePort;
 import com.zipte.notifications.server.application.port.out.task.SavePropertyPort;
 import com.zipte.notifications.server.adapter.out.kafka.event.PropertyEvent;
 import com.zipte.notifications.server.domain.PropertyNotification;
@@ -14,10 +15,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
-    /*
-        Kafka로 받은 이벤트를 바탕으로 행동 구체화
-     */
 
 @Slf4j
 @Component
@@ -27,16 +26,21 @@ public class PropertyNotificationService implements AddPropertyNotificationTask,
     private final SavePropertyPort savePort;
     private final DeletePropertyPort deletePort;
 
+    // 의존성
+    private final LoadUserFavoritePort loadUserFavoritePort;
+
     @Override
     public void processAddEvent(PropertyEvent event) {
 
         Instant now = Instant.now();
 
-        PropertyNotification notification = createNotification(event, now);
+        // 모든 알림이 동일하게 생성
+        List<Long> favoriteUsers = loadUserFavoritePort.loadUserFavoriteByComplexCode(event.getComplexCode());
 
-        // DB에 저장
-        savePort.saveNotification(notification);
-
+        favoriteUsers.forEach(userId -> {
+            PropertyNotification notification = createNotification(event, now, userId);
+            savePort.saveNotification(notification);
+        });
     }
 
     @Override
@@ -44,18 +48,18 @@ public class PropertyNotificationService implements AddPropertyNotificationTask,
         deletePort.deleteCommentNotification(event.getComplexCode());
     }
 
-    private PropertyNotification createNotification(PropertyEvent event, Instant now) {
-        // 알림 생성
+    private PropertyNotification createNotification(PropertyEvent event, Instant now, Long userId) {
+
         return PropertyNotification.of(
-                        NotificationIdGenerator.generate(),
-                        NotificationType.PROPERTY,
-                        1L,
-                        event.getOccurredAt(),
-                        now,
-                        now,
-                        now.plus(90, ChronoUnit.DAYS),
-                        event.getComplexCode(),
-                        event.getPrice());
+                NotificationIdGenerator.generate(),
+                NotificationType.PROPERTY,
+                userId,
+                event.getOccurredAt(),
+                now,
+                now,
+                now.plus(90, ChronoUnit.DAYS),
+                event.getComplexCode(),
+                event.getPrice());
     }
 
 }
