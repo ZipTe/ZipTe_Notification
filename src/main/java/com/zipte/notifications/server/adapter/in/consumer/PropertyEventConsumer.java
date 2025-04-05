@@ -1,8 +1,8 @@
 package com.zipte.notifications.server.adapter.in.consumer;
 
-import com.zipte.notifications.server.application.port.in.task.AddCommentNotificationTask;
-import com.zipte.notifications.server.application.port.in.task.RemoveCommentNotificationTask;
-import com.zipte.notifications.server.adapter.out.kafka.event.CommentEvent;
+import com.zipte.notifications.server.application.port.in.task.AddPropertyNotificationTask;
+import com.zipte.notifications.server.application.port.in.task.RemovePropertyNotificationTask;
+import com.zipte.notifications.server.adapter.out.kafka.event.PropertyEvent;
 import com.zipte.notifications.server.adapter.out.kafka.event.EventType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,19 +14,18 @@ import java.util.function.Consumer;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CommentEventConsumer {
+public class PropertyEventConsumer {
 
-    private final AddCommentNotificationTask addTask;
-    private final RemoveCommentNotificationTask removeTask;
+    private final AddPropertyNotificationTask addTask;
+    private final RemovePropertyNotificationTask removeTask;
 
-    @Bean("comment")
-    public Consumer<CommentEvent> comment() {
+    @Bean("property")
+    public Consumer<PropertyEvent> property() {
         return event -> {
             if (event.getType() == EventType.ADD) {
                 // 몽고디비에 저장하는 로직 수행
                 addTask.processAddEvent(event);
-            }
-            else if (event.getType() == EventType.REMOVE) {
+            } else if (event.getType() == EventType.REMOVE) {
                 // 몽고디비에서 지우는 로직 수행
                 removeTask.processRemoveEvent(event);
             }

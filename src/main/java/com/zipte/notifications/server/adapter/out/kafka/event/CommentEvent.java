@@ -1,4 +1,4 @@
-package com.zipte.notifications.server.domain;
+package com.zipte.notifications.server.adapter.out.kafka.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ public class CommentEvent {
         Kafka로 받을 event 객체
      */
 
-    private CommentEventType type;
+    private EventType type;
     private Long postId;
     private Long postOwnerId;
     private Long writerId;
